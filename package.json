@@ -1,0 +1,23 @@
+{
+  "name": "erised",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marvelm/erised.git"
+  },
+  "keywords": [
+    "mirror",
+    "archive"
+  ],
+  "author": "marvelm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marvelm/erised/issues"
+  },
+  "homepage": "https://github.com/marvelm/erised#readme"
+}
