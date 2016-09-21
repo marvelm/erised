@@ -33,5 +33,5 @@ export const Page = db.define('pages', {
 });
 
 export function initDb() {
-  return db.sync({ force: true });
+  return db.sync();
 }
