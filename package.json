@@ -1,8 +1,11 @@
 {
   "name": "erised",
-  "version": "2.0.0",
+  "version": "2.0.3",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "erised": "./index.js"
+  },
   "scripts": {
     "start": "node index.js",
     "build:watch": "rollup -c --watch",
