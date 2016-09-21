@@ -17,6 +17,10 @@ export default function fetch(url) {
     .pdf(pdf)
     .html(html)
 
+    .evaluate(function() {
+      return document.title
+    })
+
     .end()
-    .then(() => ({ url, screenshot, pdf, html }));
+    .then(title => ({ title, url, screenshot, pdf, html }));
 }

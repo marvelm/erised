@@ -1,18 +1,23 @@
 import Sequelize from 'sequelize';
+import Umzug from 'umzug';
 import path from 'path';
 
 import { erised_path } from './util';
 
-export const db = new Sequelize('erised', null, null, {
+const sequelize = new Sequelize('erised', null, null, {
   dialect: 'sqlite',
   storage: path.join(erised_path, 'erised.sqlite3')
 });
 
-export const Page = db.define('pages', {
+export const Page = sequelize.define('pages', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true
+  },
+  title: {
+    type: Sequelize.STRING,
+    field: 'title'
   },
   url: {
     type: Sequelize.STRING,
@@ -33,5 +38,20 @@ export const Page = db.define('pages', {
 });
 
 export function initDb() {
-  return db.sync();
+  return sequelize.sync()
+    .then(function runMigrations() {
+      const umzug = new Umzug({
+        storage: 'sequelize',
+        storageOptions: {
+          sequelize
+        },
+        migrations: {
+          params: [sequelize.getQueryInterface(), sequelize],
+          path: 'migrations',
+          pattern: /^\d+.+\.js$/
+        }
+      });
+
+      return umzug.up();
+    });
 }

@@ -33,6 +33,7 @@
     "rollup": "^0.36.0",
     "sequelize": "^3.24.3",
     "sqlite3": "^3.1.4",
+    "umzug": "^1.11.0",
     "yargs": "^5.0.0"
   },
   "devDependencies": {
