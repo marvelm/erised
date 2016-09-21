@@ -14,9 +14,18 @@ function init() {
   );
 }
 
-const url = argv._[0];
-if (url) {
-  init()
-    .then(() => fetch(url))
-    .then(res => Page.create(res));
+const command = argv._[0];
+if (command) {
+  switch (command) {
+    case 'list':
+    Page.findAll()
+      .then(pages => console.log(JSON.stringify(pages, null, null)));
+    break;
+
+    default:
+    const url = command;
+    init()
+      .then(() => fetch(url))
+      .then(res => Page.create(res));;
+  }
 }
