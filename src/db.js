@@ -6,7 +6,8 @@ import { erised_path } from './util';
 
 const sequelize = new Sequelize('erised', null, null, {
   dialect: 'sqlite',
-  storage: path.join(erised_path, 'erised.sqlite3')
+  storage: path.join(erised_path, 'erised.sqlite3'),
+  logging: false
 });
 
 export const Page = sequelize.define('pages', {
