@@ -1,15 +1,15 @@
-const path = require('path');
+const path = require('path')
 
-const Sequelize = require('sequelize');
-const Umzug = require('umzug');
+const Sequelize = require('sequelize')
+const Umzug = require('umzug')
 
-const { erised_path } = require('./util');
+const { erised_path } = require('./util')
 
 const sequelize = new Sequelize('erised', null, null, {
   dialect: 'sqlite',
   storage: path.join(erised_path, 'erised.sqlite3'),
   logging: false
-});
+})
 
 const Page = sequelize.define('pages', {
   id: {
@@ -37,11 +37,11 @@ const Page = sequelize.define('pages', {
     type: Sequelize.STRING,
     field: 'screenshot'
   }
-});
+})
 
-function initDb() {
+function initDb () {
   return sequelize.sync()
-    .then(function runMigrations() {
+    .then(function runMigrations () {
       const umzug = new Umzug({
         storage: 'sequelize',
         storageOptions: {
@@ -52,10 +52,10 @@ function initDb() {
           path: 'migrations',
           pattern: /^\d+.+\.js$/
         }
-      });
+      })
 
-      return umzug.up();
-    });
+      return umzug.up()
+    })
 }
 
-module.exports = { Page, initDb };
+module.exports = { Page, initDb }

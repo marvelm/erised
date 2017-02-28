@@ -1,17 +1,17 @@
-const homedir = require('homedir');
+const homedir = require('homedir')
 
-const path = require('path');
+const path = require('path')
 
-const erised_directory = '.erised';
-const erised_path = path.join(homedir(), erised_directory);
+const erisedDirectory = '.erised'
+const erisedPath = path.join(homedir(), erisedDirectory)
 
-const archive_directory = 'archive';
-const archive_path = path.join(erised_path, archive_directory);
+const archiveDirectory = 'archive'
+const archivePath = path.join(erisedPath, archiveDirectory)
 
 module.exports = {
-  erised_directory,
-  erised_path,
+  erisedDirectory,
+  erisedPath,
 
-  archive_directory,
-  archive_path
-};
+  archiveDirectory,
+  archivePath
+}

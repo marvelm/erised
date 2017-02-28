@@ -1,23 +1,23 @@
 #!/usr/bin/env node
 
-const { argv } = require('yargs');
-const Promise = require('bluebird');
+const { argv } = require('yargs')
+const Promise = require('bluebird')
 
-const fs = Promise.promisifyAll(require('fs-extra'));
+const fs = Promise.promisifyAll(require('fs-extra'))
 
-const fetch = require('../src/fetch');
-const { archive_path } = require('../src/util');
-const { initDb, Page } = require('../src/db');
+const fetch = require('../src/fetch')
+const { archive_path } = require('../src/util')
+const { initDb, Page } = require('../src/db')
 
 
 function init() {
   return Promise.join(
     fs.mkdirpAsync(archive_path),
     initDb()
-  );
+  )
 }
 
-const command = argv._[0];
+const command = argv._[0]
 if (command) {
   switch (command) {
     case 'list':
@@ -25,13 +25,13 @@ if (command) {
       .then(() => Page.findAll())
       .then(pages => {
         console.log(JSON.stringify(pages, null, null))
-      });
-    break;
+      })
+    break
 
     default:
-    const url = command;
+    const url = command
     init()
       .then(() => fetch(url))
-      .then(res => Page.create(res));
+      .then(res => Page.create(res))
   }
 }

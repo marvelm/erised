@@ -31,5 +31,11 @@
   },
   "engines": {
     "node": ">= 6.0.0"
+  },
+  "devDependencies": {
+    "standard": "8.6.0"
+  },
+  "scripts": {
+    "prepublish": "standard"
   }
 }
