@@ -2,12 +2,8 @@
   "name": "erised",
   "version": "2.2.2",
   "description": "",
-  "main": "src/main.js",
   "bin": {
-    "erised": "src/main.js"
-  },
-  "scripts": {
-    "start": "node src/main.js"
+    "erised": "bin/erised"
   },
   "repository": {
     "type": "git",

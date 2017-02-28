@@ -1,11 +1,13 @@
+#!/usr/bin/env node
+
 const { argv } = require('yargs');
 const Promise = require('bluebird');
 
 const fs = Promise.promisifyAll(require('fs-extra'));
 
-const fetch = require('./fetch');
-const { archive_path } = require('./util');
-const { initDb, Page } = require('./db');
+const fetch = require('../src/fetch');
+const { archive_path } = require('../src/util');
+const { initDb, Page } = require('../src/db');
 
 
 function init() {

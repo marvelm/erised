@@ -1,4 +1,4 @@
-const  path from 'path';
+const path = require('path');
 
 const Nightmare = require('nightmare');
 const { archive_path } = require('./util');
