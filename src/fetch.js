@@ -4,9 +4,10 @@ const Nightmare = require('nightmare');
 const { archive_path } = require('./util');
 
 function fetch(url) {
-  const pdf = path.join(archive_path, `${process.hrtime()[1]}.pdf`);
-  const screenshot = path.join(archive_path, `${process.hrtime()[1]}.png`);
-  const html = path.join(archive_path, `${process.hrtime()[1]}.html`);
+  const file = process.hrtime()[1];
+  const pdf = path.join(archive_path, `${file}.pdf`);
+  const screenshot = path.join(archive_path, `${file}.png`);
+  const html = path.join(archive_path, `${file}.html`);
 
   const n = Nightmare({ show: true });
 
