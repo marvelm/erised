@@ -2,14 +2,12 @@
   "name": "erised",
   "version": "2.2.2",
   "description": "",
-  "main": "index.js",
+  "main": "src/main.js",
   "bin": {
-    "erised": "./index.js"
+    "erised": "src/main.js"
   },
   "scripts": {
-    "start": "node index.js",
-    "build:watch": "rollup -c --watch",
-    "postinstall": "rollup -c"
+    "start": "node src/main.js"
   },
   "repository": {
     "type": "git",
@@ -30,14 +28,10 @@
     "fs-extra": "^0.30.0",
     "homedir": "^0.6.0",
     "nightmare": "^2.7.0",
-    "rollup": "^0.36.0",
     "sequelize": "^3.24.3",
     "sqlite3": "^3.1.4",
     "umzug": "^1.11.0",
     "yargs": "^5.0.0"
-  },
-  "devDependencies": {
-    "rollup-watch": "^2.5.0"
   },
   "engines": {
     "node": ">= 6.0.0"
