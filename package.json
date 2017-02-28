@@ -1,7 +1,7 @@
 {
   "name": "erised",
   "version": "2.2.2",
-  "description": "",
+  "description": "A CLI for archiving websites locally",
   "bin": {
     "erised": "bin/erised"
   },
