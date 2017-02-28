@@ -1,8 +1,9 @@
-import Nightmare from 'nightmare';
-import path from 'path';
-import { archive_path } from './util';
+const  path from 'path';
 
-export default function fetch(url) {
+const Nightmare = require('nightmare');
+const { archive_path } = require('./util');
+
+function fetch(url) {
   const pdf = path.join(archive_path, `${process.hrtime()[1]}.pdf`);
   const screenshot = path.join(archive_path, `${process.hrtime()[1]}.png`);
   const html = path.join(archive_path, `${process.hrtime()[1]}.html`);
@@ -24,3 +25,5 @@ export default function fetch(url) {
     .end()
     .then(title => ({ title, url, screenshot, pdf, html }));
 }
+
+module.exports = fetch;

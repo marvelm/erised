@@ -1,11 +1,12 @@
-import { argv } from 'yargs';
-import Promise from 'bluebird';
-
-import fetch from './fetch';
-import { archive_path } from './util';
-import { initDb, Page } from './db';
+const { argv } = require('yargs');
+const Promise = require('bluebird');
 
 const fs = Promise.promisifyAll(require('fs-extra'));
+
+const fetch = require('./fetch');
+const { archive_path } = require('./util');
+const { initDb, Page } = require('./db');
+
 
 function init() {
   return Promise.join(

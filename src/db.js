@@ -1,8 +1,9 @@
-import Sequelize from 'sequelize';
-import Umzug from 'umzug';
-import path from 'path';
+const path = require('path');
 
-import { erised_path } from './util';
+const Sequelize = require('sequelize');
+const Umzug = require('umzug');
+
+const { erised_path } = require('./util');
 
 const sequelize = new Sequelize('erised', null, null, {
   dialect: 'sqlite',
@@ -10,7 +11,7 @@ const sequelize = new Sequelize('erised', null, null, {
   logging: false
 });
 
-export const Page = sequelize.define('pages', {
+const Page = sequelize.define('pages', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -38,7 +39,7 @@ export const Page = sequelize.define('pages', {
   }
 });
 
-export function initDb() {
+function initDb() {
   return sequelize.sync()
     .then(function runMigrations() {
       const umzug = new Umzug({
@@ -56,3 +57,5 @@ export function initDb() {
       return umzug.up();
     });
 }
+
+module.exports = { Page, initDb };
