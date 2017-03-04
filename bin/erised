@@ -23,8 +23,8 @@ if (command) {
     case 'list':
     init()
       .then(() => Page.findAll())
-      .then(pages => {
-        console.log(JSON.stringify(pages, null, null))
+      .each(page => {
+        console.log(JSON.stringify(page))
       })
     break
 
