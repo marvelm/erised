@@ -49,7 +49,7 @@ function initDb () {
         },
         migrations: {
           params: [sequelize.getQueryInterface(), sequelize],
-          path: 'migrations',
+          path: path.resolve(__dirname, '../migrations'),
           pattern: /^\d+.+\.js$/
         }
       })
