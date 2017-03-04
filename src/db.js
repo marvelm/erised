@@ -3,11 +3,11 @@ const path = require('path')
 const Sequelize = require('sequelize')
 const Umzug = require('umzug')
 
-const { erised_path } = require('./util')
+const { erisedPath } = require('./util')
 
 const sequelize = new Sequelize('erised', null, null, {
   dialect: 'sqlite',
-  storage: path.join(erised_path, 'erised.sqlite3'),
+  storage: path.join(erisedPath, 'erised.sqlite3'),
   logging: false
 })
 

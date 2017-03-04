@@ -6,13 +6,13 @@ const Promise = require('bluebird')
 const fs = Promise.promisifyAll(require('fs-extra'))
 
 const fetch = require('../src/fetch')
-const { archive_path } = require('../src/util')
+const { archivePath } = require('../src/util')
 const { initDb, Page } = require('../src/db')
 
 
 function init() {
   return Promise.join(
-    fs.mkdirpAsync(archive_path),
+    fs.mkdirpAsync(archivePath),
     initDb()
   )
 }
