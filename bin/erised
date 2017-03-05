@@ -33,5 +33,6 @@ if (command) {
     init()
       .then(() => fetch(url))
       .then(res => Page.create(res))
+      .tap(page => console.log(JSON.stringify(page)))
   }
 }
