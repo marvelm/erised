@@ -33,6 +33,7 @@
     "node": ">= 6.0.0"
   },
   "devDependencies": {
+    "sequelize-cli": "2.5.1",
     "standard": "8.6.0"
   },
   "scripts": {
