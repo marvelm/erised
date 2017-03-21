@@ -49,5 +49,5 @@ if (list) {
     .tap(page => console.log(JSON.stringify(page)))
 } else {
   console.log(doc)
-  process.exit(1) 
+  process.exit(1)
 }

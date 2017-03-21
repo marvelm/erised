@@ -1,6 +1,12 @@
 # Erised
+>Usage:
+>  erised list
+>  erised <url> [--tags=<tags>]
+>
+>Options:
+>  --tags=<tags> String of tags (e.g. nodejs,backend,job)
 
-## Usage
+## Examples
 ```
 $ npm install -g erised
 $ erised 'http://localhost:8000'
