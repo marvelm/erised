@@ -1,6 +1,7 @@
 const path = require('path')
 
 const Nightmare = require('nightmare')
+
 const { archivePath } = require('./util')
 
 function fetch (url) {

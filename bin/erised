@@ -1,14 +1,26 @@
 #!/usr/bin/env node
 
-const { argv } = require('yargs')
 const Promise = require('bluebird')
-
+const { docopt } = require('docopt')
 const fs = Promise.promisifyAll(require('fs-extra'))
 
+const { version } = require('../package.json')
+const { initDb, Page } = require('../src/db')
 const fetch = require('../src/fetch')
 const { archivePath } = require('../src/util')
-const { initDb, Page } = require('../src/db')
 
+const doc = `
+Erised -- ${version}
+
+Usage:
+  erised list
+  erised <url> [--tags=<tags>]
+
+Options:
+  --tags=<tags> String of tags (e.g. nodejs,backend,job)
+`
+
+const opts = docopt(doc)
 
 function init() {
   return Promise.join(
@@ -17,22 +29,25 @@ function init() {
   )
 }
 
-const command = argv._[0]
-if (command) {
-  switch (command) {
-    case 'list':
-    init()
-      .then(() => Page.findAll())
-      .each(page => {
-        console.log(JSON.stringify(page))
-      })
-    break
+const { list } = opts
+const url = opts['<url>']
+let tags = opts['--tags']
 
-    default:
-    const url = command
-    init()
-      .then(() => fetch(url))
-      .then(res => Page.create(res))
-      .tap(page => console.log(JSON.stringify(page)))
-  }
+if (list) {
+  init()
+    .then(() => Page.findAll())
+    .each(page => {
+      console.log(JSON.stringify(page))
+    })
+} else if (url) {
+  tags = tags || ''
+
+  init()
+    .then(() => fetch(url))
+    .tap(res => res.tags = tags)
+    .then(res => Page.create(res))
+    .tap(page => console.log(JSON.stringify(page)))
+} else {
+  console.log(doc)
+  process.exit(1) 
 }

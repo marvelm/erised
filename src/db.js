@@ -36,6 +36,10 @@ const Page = sequelize.define('pages', {
   screenshot: {
     type: Sequelize.STRING,
     field: 'screenshot'
+  },
+  tags: {
+    type: Sequelize.STRING(1024),
+    field: 'tags'
   }
 })
 
