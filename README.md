@@ -1,10 +1,12 @@
 # Erised
->Usage:
->  erised list
->  erised <url> [--tags=<tags>]
->
->Options:
->  --tags=<tags> String of tags (e.g. nodejs,backend,job)
+```
+Usage:
+  erised list
+  erised <url> [--tags=<tags>]
+
+Options:
+  --tags=<tags> String of tags (e.g. nodejs,backend,job)
+```
 
 ## Examples
 ```
