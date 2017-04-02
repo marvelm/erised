@@ -91,13 +91,9 @@ describe('fetch', () => {
   })
 
   it('should return a Promise with Page object', () => {
-    const expectedAttributes = new Set(Object.keys(Page.attributes))
+    const expectedAttributes = [ 'html', 'pdf', 'screenshot', 'title', 'url' ]
+    const actualAttributes = Object.keys(actual.result).sort()
 
-    // Sequelize includes some default attributes
-    // `fetch` won't return these
-    for (let key of ['id', 'createdAt', 'updatedAt']) expectedAttributes.delete(key)
-
-    const actualAttributes = new Set(Object.keys(actual.result))
     assert.deepEqual(actualAttributes, expectedAttributes)
   })
 })
