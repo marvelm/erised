@@ -1,8 +1,6 @@
 const {assert} = require('chai')
 const mockery = require('mockery')
 
-const {Page} = require('../src/db')
-
 // Mocha requires all the mentioned modules first
 // This clears the module cache so that we can mock the module in the test
 mockery.enable({ useCleanCache: true })
