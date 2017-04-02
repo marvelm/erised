@@ -41,7 +41,7 @@
     "standard": "8.6.0"
   },
   "scripts": {
-    "prepublish": "standard",
-    "test": "standard && mocha test"
+    "prepublish": "test",
+    "test": "standard --env mocha && mocha test"
   }
 }

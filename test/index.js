@@ -58,7 +58,7 @@ class NightmareMock {
 
 describe('fetch', () => {
   let actual = {operations: []}
-  mockery.warnOnUnregistered(false);
+  mockery.warnOnUnregistered(false)
   mockery.registerMock('nightmare', arg => new NightmareMock(actual, arg))
   const fetch = require('../src/fetch')
 
@@ -72,7 +72,7 @@ describe('fetch', () => {
   })
 
   it('should execute operations in the correct order', () => {
-    const expected_operations = [
+    const expectedOperations = [
       'goto',
       'wait',
       'screenshot',
@@ -83,7 +83,7 @@ describe('fetch', () => {
       'then'
     ]
 
-    assert.deepEqual(actual.operations, expected_operations)
+    assert.deepEqual(actual.operations, expectedOperations)
   })
 
   it('should close the Nightmare instance', () => {
@@ -91,13 +91,13 @@ describe('fetch', () => {
   })
 
   it('should return a Promise with Page object', () => {
-    const expected_attributes = new Set(Object.keys(Page.attributes))
+    const expectedAttributes = new Set(Object.keys(Page.attributes))
 
     // Sequelize includes some default attributes
     // `fetch` won't return these
-    for (let key of ['id', 'createdAt', 'updatedAt']) expected_attributes.delete(key)
+    for (let key of ['id', 'createdAt', 'updatedAt']) expectedAttributes.delete(key)
 
-    const actual_attributes = new Set(Object.keys(actual.result))
-    assert.deepEqual(actual_attributes, expected_attributes)
+    const actualAttributes = new Set(Object.keys(actual.result))
+    assert.deepEqual(actualAttributes, expectedAttributes)
   })
 })
