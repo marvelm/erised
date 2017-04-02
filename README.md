@@ -1,4 +1,6 @@
 # Erised
+[![Build Status](https://travis-ci.org/marvelm/erised.svg?branch=master)](https://travis-ci.org/marvelm/erised)
+
 ```
 Usage:
   erised list
