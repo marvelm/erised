@@ -1,51 +1,34 @@
 #!/usr/bin/env node
 
-const Promise = require('bluebird')
 const { docopt } = require('docopt')
-const fs = Promise.promisifyAll(require('fs-extra'))
 
 const { version } = require('../package.json')
-const { initDb, Page } = require('../src/db')
-const fetch = require('../src/fetch')
-const { archivePath } = require('../src/util')
+const { archivePage, getAllPages } = require('../src')
 
 const doc = `
 Erised -- ${version}
 
 Usage:
   erised list
-  erised <url> [--tags=<tags>]
+  erised <url> [--tags=<string>]
 
 Options:
-  --tags=<tags> String of tags (e.g. nodejs,backend,job)
+  --tags=<string> Tags (e.g. nodejs,backend,job)
 `
 
 const opts = docopt(doc)
 
-function init() {
-  return Promise.join(
-    fs.mkdirpAsync(archivePath),
-    initDb()
-  )
-}
-
 const { list } = opts
 const url = opts['<url>']
-let tags = opts['--tags']
+const tags = opts['--tags']
 
 if (list) {
-  init()
-    .then(() => Page.findAll())
+  getAllPages()
     .each(page => {
       console.log(JSON.stringify(page))
     })
 } else if (url) {
-  tags = tags || ''
-
-  init()
-    .then(() => fetch(url))
-    .tap(res => res.tags = tags)
-    .then(res => Page.create(res))
+  archivePage(url, tags || '')
     .tap(page => console.log(JSON.stringify(page)))
 } else {
   console.log(doc)

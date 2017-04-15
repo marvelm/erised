@@ -1,5 +1,6 @@
 const path = require('path')
 
+const Promise = require('bluebird')
 const Nightmare = require('nightmare')
 
 const { archivePath } = require('./util')
@@ -10,11 +11,14 @@ function fetch (url) {
   const screenshot = path.join(archivePath, `${file}.png`)
   const html = path.join(archivePath, `${file}.html`)
 
-  const n = Nightmare({ show: true })
+  const n = Nightmare({
+    show: true,
+    Promise
+  })
 
   return n
     .goto(url)
-    .wait()
+    .wait(0)
 
     .screenshot(screenshot)
     .pdf(pdf)

@@ -5,6 +5,7 @@
   "bin": {
     "erised": "bin/erised"
   },
+  "main": "src",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marvelm/erised.git"
@@ -24,7 +25,7 @@
     "docopt": "0.6.2",
     "fs-extra": "^0.30.0",
     "homedir": "^0.6.0",
-    "nightmare": "^2.7.0",
+    "nightmare": "2.10.0",
     "sequelize": "^3.24.3",
     "sqlite3": "^3.1.4",
     "umzug": "^1.11.0",
