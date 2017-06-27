@@ -24,12 +24,10 @@ const tags = opts['--tags']
 
 if (list) {
   getAllPages()
-    .each(page => {
-      console.log(JSON.stringify(page))
-    })
+    .each(page => console.log(JSON.stringify(page)))
 } else if (url) {
   archivePage(url, tags || '')
-    .tap(page => console.log(JSON.stringify(page)))
+    .each(page => console.log(JSON.stringify(page)))
 } else {
   console.log(doc)
   process.exit(1)

@@ -19,11 +19,11 @@ function init () {
 function archivePage (url, tags) {
   tags = tags || ''
   return init()
-    .then(() => fetch(url))
-    .tap(res => {
-      res.tags = tags
+    .then(() => fetch(url).then(Array.of))
+    .each(page => {
+      page.tags = tags
     })
-    .then(res => Page.create(res))
+    .map(page => Page.create(page))
 }
 
 function getAllPages () {
