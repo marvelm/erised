@@ -26,6 +26,8 @@
     "fs-extra": "^0.30.0",
     "homedir": "^0.6.0",
     "nightmare": "2.10.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
     "sequelize": "^3.24.3",
     "sqlite3": "^3.1.4",
     "umzug": "^1.11.0",

@@ -3,6 +3,7 @@ const fs = Promise.promisifyAll(require('fs-extra'))
 
 const { initDb, Page } = require('./db')
 const fetch = require('./fetch')
+const hn = require('./hackernews')
 const { archivePath } = require('./util')
 
 let initialized = false
@@ -19,7 +20,12 @@ function init () {
 function archivePage (url, tags) {
   tags = tags || ''
   return init()
-    .then(() => fetch(url).then(Array.of))
+    .then(() => {
+      if (hn.isHNPost(url)) {
+        return hn.fetchHNPost(url)
+      }
+      return fetch(url).then(Array.of)
+    })
     .each(page => {
       page.tags = tags
     })
