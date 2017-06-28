@@ -5,6 +5,10 @@ const Nightmare = require('nightmare')
 
 const { archivePath } = require('./util')
 
+const loadTimeout = process.env.ERISED_LOAD_TIMEOUT
+  ? parseInt(process.env.ERISED_LOAD_TIMEOUT)
+  : 10000
+
 function fetch (url) {
   const file = process.hrtime()[1]
   const pdf = path.join(archivePath, `${file}.pdf`)
@@ -13,6 +17,7 @@ function fetch (url) {
 
   const n = Nightmare({
     show: true,
+    loadTimeout,
     Promise
   })
 
