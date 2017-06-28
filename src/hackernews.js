@@ -19,14 +19,14 @@ function fetchHNPost (link) {
 
   return Promise.join(
     fetch(link),
-    request({uri: `https://hacker-news.firebaseio.com/v0/item/${id}.json`, json: true}),
-    (hnPage, apiRes) => {
-      if (apiRes.url) {
-        return fetch(apiRes.url).then(articlePage => [hnPage, articlePage])
-      }
-      return [hnPage]
+    request({uri: `https://hacker-news.firebaseio.com/v0/item/${id}.json`, json: true})
+  ).spread((hnPage, apiRes) => {
+    if (apiRes.url) {
+      return fetch(apiRes.url)
+        .then(articlePage => [hnPage, articlePage])
     }
-  )
+    return [hnPage]
+  })
 }
 
 module.exports = {
