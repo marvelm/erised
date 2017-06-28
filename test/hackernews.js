@@ -3,8 +3,8 @@ const {assert} = require('chai')
 const mockery = require('mockery')
 
 describe('HackerNews fetcher', () => {
-  let actual = {operations: []}
-  require('./nightmare').register(actual)
+  const recorder = {operations: []}
+  require('./nightmare').register(recorder)
 
   mockery.registerMock('request-promise', (req) => {
     if (req && req.uri === 'https://hacker-news.firebaseio.com/v0/item/14639967.json') {
@@ -31,18 +31,24 @@ describe('HackerNews fetcher', () => {
   })
 
   describe('HN link post', () => {
-    it('should fetch the discussion and article', () => {
-      const url = 'https://news.ycombinator.com/item?id=14639967'
-      return hn.fetchHNPost(url)
-        .then(pages => assert.lengthOf(pages, 2))
-    })
+    const url = 'https://news.ycombinator.com/item?id=14639967'
+    const post = hn.fetchHNPost(url)
+
+    it('should fetch the discussion and article', () =>
+      post.then(pages => assert.lengthOf(pages, 2)))
+
+    it('both pages should have the `hn_id` tag', () =>
+      post.each(page => assert.equal(page.tags, 'hn_id=14639967')))
   })
 
   describe('Ask HN', () => {
-    it('should fetch only the discussion', () => {
-      const url = 'https://news.ycombinator.com/item?id=9049208'
-      return hn.fetchHNPost(url)
-        .then(pages => assert.lengthOf(pages, 1))
-    })
+    const url = 'https://news.ycombinator.com/item?id=9049208'
+    const post = hn.fetchHNPost(url)
+
+    it('should fetch only the discussion', () =>
+      post.then(pages => assert.lengthOf(pages, 1)))
+
+    it('page should have the `hn_id` tag', () =>
+      post.then(pages => assert.equal(pages[0].tags, 'hn_id=9049208')))
   })
 })

@@ -21,9 +21,13 @@ function fetchHNPost (link) {
     fetch(link),
     request({uri: `https://hacker-news.firebaseio.com/v0/item/${id}.json`, json: true})
   ).spread((hnPage, apiRes) => {
-    if (apiRes.url) {
+    hnPage.tags = `hn_id=${id}`
+    if (apiRes && apiRes.url) {
       return fetch(apiRes.url)
-        .then(articlePage => [hnPage, articlePage])
+        .then(articlePage => {
+          articlePage.tags = hnPage.tags
+          return [hnPage, articlePage]
+        })
     }
     return [hnPage]
   })

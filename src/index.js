@@ -27,7 +27,11 @@ function archivePage (url, tags) {
       return fetch(url).then(Array.of)
     })
     .each(page => {
-      page.tags = tags
+      if (page.tags && page.tags !== '') {
+        page.tags += ',' + tags
+      } else {
+        page.tags = tags
+      }
     })
     .map(page => Page.create(page))
 }
