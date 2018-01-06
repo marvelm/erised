@@ -45,6 +45,8 @@
   },
   "scripts": {
     "prepublish": "npm test",
-    "test": "standard --env mocha && mocha test"
+    "pretest": "npm run lint",
+    "lint": "standard --env mocha",
+    "test": "mocha test"
   }
 }
