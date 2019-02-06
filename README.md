@@ -1,6 +1,6 @@
 # Erised
 [![Build Status](https://travis-ci.org/marvelm/erised.svg?branch=master)](https://travis-ci.org/marvelm/erised)
-
+![Version](https://img.shields.io/npm/v/erised.svg?style=plastic)
 ```
 Usage:
   erised list
